@@ -1,0 +1,51 @@
+#<!DOCTYPE html><html><title>Literate Ruby - Example document</title><xmp theme="united" style="display:none;">
+=begin
+## Overview
+
+This example demonstrates a crude technique for creating a polyglot HTML document and ruby program that renders in a web browser and is executable as a ruby program.
+
+It can be run directly from the command line:
+
+	~ $ ruby example.html
+	Hello world from literate ruby.
+	~ $ 
+
+Many features of markdown-style formatting can be used:
+
+1. Numbered lists
+1. Pictures [![GitHub license](https://img.shields.io/github/license/dslik/literate-ruby)](https://github.com/dslik/literate-ruby/blob/master/LICENSE)
+1. Links: [MIT Licensed](https://lbesson.mit-license.org/)
+1. Tables
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+### Some Ruby code
+=end
+
+	print "Hello world from literate ruby.\n"
+
+=begin
+Documentation and code can be mixed, which is useful for documenting functions and algorithms, adding diagrams, etc.
+
+The only restriction is that all ruby code must be indented at least one level in order to show up as code in markdown format.
+
+All markdown text must be between `==begin` and `==end` blocks so that they will be ignored by ruby.
+
+### Some more Ruby code
+=end
+
+	# Normally there would be a lot more code here
+	exit()
+
+=begin
+## How does it work?
+
+A hidden block of Javascript at the end of the file invokes the "weave" Javascript code that renders the markdown as HTML. The weave.js and weave.css files can be located locally or hosted on the web.
+
+This code was originally forked from the MIT-licensed strapdown.js, which is now abandoned. A newer fork can be found here: https://github.com/Naereen/StrapDown.js/
+=end
+
+#</xmp><script src="weave.js"></script><script> var t, walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null,false); while(t=walk.nextNode()){ t.nodeValue = t.nodeValue.replace(/=begin|=end/gi,"");} </script><style>h2 { background-color: #FFF0F0; }</style></html>
